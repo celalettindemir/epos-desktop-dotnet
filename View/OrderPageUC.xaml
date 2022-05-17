@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="EposWpf.View.OrderPageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EposWpf.View"
+             mc:Ignorable="d" 
+            xmlns:uc="clr-namespace:EposWpf.View">
+    <Grid>
+        <Grid  x:Name="MainContent" IsEnabled="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="370"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0 0 5 0"  BorderBrush="LightSlateGray">
+                <Grid  Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="115"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0">
+                        <Button FontSize="18"  Content="Back To Home" Click="Button_Click_3" Height="35"/>
+                        <TextBlock VerticalAlignment="Stretch" FontSize="24" TextAlignment="Center" Text="New Order" Margin="0 0 0 0" Background="LightGray"/>
+                        <Grid Height="40" Margin="0 10 0 0">
+                            <StackPanel  Orientation="Horizontal" CanHorizontallyScroll="True" VerticalAlignment="Top" Margin="10 0" >
+                                <Button FontSize="18" Margin="0 0 10 0" Content="Collect" Width="110" Height="30"/>
+                                <Button FontSize="18" Margin="0 0 10 0" Content="Eat in" Width="110" Height="30"/>
+                                <Button FontSize="18" Margin="0 0 0 0" Content="Takeaway" Width="110" Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <Grid Grid.Row="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Background="LightGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Stretch" FontSize="24" TextAlignment="Left" Text="To Pay"/>
+                            <TextBlock Grid.Column="1" FontSize="24" TextAlignment="Center" Text="{Binding SumPrice}"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <StackPanel x:Name="OrderListStack">
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                    <WrapPanel Background="LightGray" Grid.Row="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Button Height="80" Width="100" BorderThickness="0" Background="Orange" Click="DeleteOrder_Click" Content="Delete" Margin="10" />
+                                <Button Height="80" Width="100" BorderThickness="0" Background="Blue" Click="RecallOrder_Click" Content="Recall" Margin="10" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <Button Height="80" Width="100" BorderThickness="0" Background="Red" Click="Clear_Click"  Content="Clear" Margin="10" />
+                                <Button Height="80" Width="100" BorderThickness="0" Background="Blue" Click="SaveOrder_Click" Content="Save" Margin="10" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2">
+                                <Button Height="50" Width="100" BorderThickness="0" VerticalAlignment="Top" Click="RefundOrder_Click"  Content="Refund" Background="Red" Margin="10" />
+                                <Button Height="110" Width="100" BorderThickness="0" Background="LightGreen" Click="ConfirmOrder_Click"  Content="CONFIRM" Margin="10" />
+                            </StackPanel>
+                        </Grid>
+
+                    </WrapPanel>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackPanel x:Name="navPanel" Orientation="Horizontal" CanHorizontallyScroll="True" VerticalAlignment="Top" Margin="10 0" >
+                    </StackPanel>
+                    <Grid x:Name="GridCursor" Width="100" Height="5" Background="#FF2196F3"  HorizontalAlignment="Left" Margin="10 0"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="GridMain" Background="Beige">
+                    <ScrollViewer   HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel x:Name="productPanel" Orientation="Horizontal" VerticalAlignment="Top" Margin="10 10 0 10" >
+                            
+                        </WrapPanel>
+                    </ScrollViewer>
+                    <ScrollViewer x:Name="ItemExtraSelect" Visibility="Hidden"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel x:Name="ItemExtraSelectContent" VerticalAlignment="Top" Opacity="0.96" Background="White">
+                            
+                        </WrapPanel>
+                    </ScrollViewer>
+                    <WrapPanel Visibility="Hidden" VerticalAlignment="Top" Opacity="0.96" Background="White">
+
+                    </WrapPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid x:Name="LoadingIndicatorPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Loading....."/>
+        </Grid>
+    </Grid>
+</UserControl>

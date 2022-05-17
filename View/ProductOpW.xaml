@@ -1,0 +1,160 @@
+﻿<Window x:Class="EposWpf.View.ProductOpW"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:EposWpf.View"
+        mc:Ignorable="d"
+        
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        Title="ProductOpW" Height="450" Width="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="GridMenu" Grid.Column="0" HorizontalAlignment="Left" Margin="0 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5">
+            <StackPanel>
+                <Image Height="140" Stretch="Fill" RenderTransformOrigin="1,1" Source="/View/mountains.jpg"/>
+                <ListView x:Name="leftMenu" Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
+                    <ListViewItem x:Name="productItem" PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonDown" Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Recycle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Product" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="stockItem" PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonDown" Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Stock" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="additionsItem"  PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonDown" Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Lightbulb" Width="20" Height="20" Foreground="Green" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Additions" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonDown" Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Heart" Width="20" Height="20" Foreground="#FFD41515" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Nop" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="CopyItem" PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonUp" Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="StarCircle" Width="20" Height="20" Foreground="#FFE6A701" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Copy" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="PasteItem" PreviewMouseLeftButtonUp="ListViewItem_PreviewMouseLeftButtonUp"  Height="45" Padding="0">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="Paste" Margin="10"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="GridBackground" Grid.Column="1" Background="#55313131">
+            <Grid Margin="10" x:Name="ProductProperties">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label>Name:</Label>
+                <TextBox Grid.Column="1" Margin="0,0,0,10" x:Name="ProductName" />
+                <Label Grid.Row="1">Title:</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" x:Name="ProductTitle" />
+                <Label Grid.Row="2">Price:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" x:Name="ProductPrice" />
+                <Label Grid.Row="3">Color:</Label>
+
+                <materialDesign:ColorPicker Grid.RowSpan="3"  Grid.Row="3" Grid.Column="1" Margin="10,10,10,10" x:Name="ClrPcker_Background" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="239"/>
+                <Grid Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" ></Grid>
+                <Grid Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" >
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                        <Button Content="Delete" BorderThickness="0" Background="Red" Margin="0,0,10,0"></Button>
+                        <Button Content="Save" Click="Button_Click" BorderThickness="0"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Margin="10" x:Name="ProductStock" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label>Name:</Label>
+                <TextBox Grid.Column="1" Margin="0,0,0,10" />
+                <Label Grid.Row="1">Title:</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
+                <Label Grid.Row="2">Price:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" />
+                <Label Grid.Row="3">Color:</Label>
+                <materialDesign:ColorPicker Grid.Row="3" Grid.Column="1" Margin="0,0,0,10"></materialDesign:ColorPicker>
+
+                <Grid Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" ></Grid>
+                <Grid Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" >
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                        <Button Content="Delete" BorderThickness="0" Background="Red" Margin="0,0,10,0"></Button>
+                        <Button Content="Save"  BorderThickness="0"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Margin="10" x:Name="ProductAdditions" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label>Name:</Label>
+                <TextBox Grid.Column="1" Margin="0,0,0,10" />
+                <Label Grid.Row="1">Title:</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" />
+                <Label Grid.Row="2">Price:</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" />
+                <Label Grid.Row="3">Color:</Label>
+                <materialDesign:ColorPicker Grid.Row="3" Grid.Column="1" Margin="0,0,0,10"></materialDesign:ColorPicker>
+
+                <Grid Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" ></Grid>
+                <Grid Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0" >
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+                        <Button Content="Delete" BorderThickness="0" Background="Red" Margin="0,0,10,0"></Button>
+                        <Button Content="Save"  BorderThickness="0"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

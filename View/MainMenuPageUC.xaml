@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="EposWpf.View.MainMenuPageUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EposWpf.View"
+             xmlns:btn="clr-namespace:EposWpf.View.ButtonUC"
+             mc:Ignorable="d" >
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <WrapPanel x:Name="MenuButtonWrap">
+            <btn:MainMenuButton ImageSource="C:\Users\celal258\Documents\EposWpf\assets\diagram.png" ButtonText="Order"/>
+            <btn:MainMenuButton ImageSource="C:\Users\celal258\Documents\EposWpf\assets\document.png" ButtonText="Edit"/>
+            <btn:MainMenuButton ImageSource="C:\Users\celal258\Documents\EposWpf\assets\employees.png" ButtonText="Personel"/>
+            <btn:MainMenuButton ImageSource="C:\Users\celal258\Documents\EposWpf\assets\warehouse.png" ButtonText="Stock"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>
